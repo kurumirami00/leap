@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const cors    = require('cors');
-const path    = require('path');
 
 const authRoutes       = require('./routes/authRoutes');
 const userRoutes       = require('./routes/userRoutes');
@@ -15,26 +14,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Serve static frontend
-app.use(express.static(path.join(__dirname, '..', 'Frontend', 'dist')));
+app.use('/api/auth',        authRoutes);
+app.use('/api/users',       userRoutes);
+app.use('/api/courses',     courseRoutes);
+app.use('/api/enrollments', enrollmentRoutes);
+app.use('/api/grades',      gradeRoutes);
+app.use('/api/badges',      badgeRoutes);
 
-// ── API Routes ────────────────────────────────────────────────────────────────
-app.use('/api/auth',       authRoutes);
-app.use('/api/users',      userRoutes);
-app.use('/api/courses',    courseRoutes);
-app.use('/api/enrollments',enrollmentRoutes);
-app.use('/api/grades',     gradeRoutes);
-app.use('/api/badges',     badgeRoutes);
-
-// Health check
 app.get('/api/health', (req, res) => res.json({ status: 'ok', time: new Date() }));
+app.get('/', (req, res) => res.json({ message: '🚀 LEAP API is running' }));
 
-// Fallback: serve React app for any non-API route
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'Frontend', 'dist', 'index.html'));
-});
-
-// Global error handler
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).json({ error: 'Internal Server Error' });
