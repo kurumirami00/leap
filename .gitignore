@@ -2,3 +2,4 @@ backend/.env
 Frontend/.env
 frontend/.env
 node_modules/
+backend/config/database.js

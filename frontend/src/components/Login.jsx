@@ -18,7 +18,12 @@ export default function Login() {
     try {
       const res = await api.post('/auth/login', { email, password });
       login(res.data.token, res.data.user);
-      navigate('/');
+      // Redirect based on role
+      if (res.data.user?.role === 'instructor') {
+        navigate('/instructor/dashboard');
+      } else {
+        navigate('/');
+      }
     } catch (err) {
       setError(err.response?.data?.error || 'Invalid credentials. Try again.');
     } finally {

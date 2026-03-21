@@ -1681,3 +1681,25 @@ button, input, textarea, select { font-family: inherit; }
   .profile-grid { grid-template-columns: 1fr; }
   .profile-field.trio { flex-direction: column; }
 }
+
+/* ── Instructor-specific styles ── */
+.task-card.lessons  { background: #f57c00; }
+.task-card.students { background: #1976d2; }
+.task-card.pending  { background: #ef6c00; }
+
+.content-container {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.content-container h2 { color: #2e7d32; margin-bottom: 15px; }
+.lesson-status { display: flex; gap: 20px; margin-bottom: 15px; }
+.lesson-status p { background: #e8f5e9; padding: 8px 12px; border-radius: 6px; font-weight: bold; color: #2e7d32; }
+.lesson-list { list-style: none; padding: 0; }
+.lesson-list li { background: #f1f8e9; margin: 8px 0; padding: 10px; border-radius: 6px; border-left: 4px solid #2e7d32; }
+.content-container input[type="file"] { display: block; margin: 15px 0; padding: 8px; border: 1px solid #ccc; border-radius: 6px; }
+.content-container textarea { width: 100%; min-height: 80px; margin: 10px 0; padding: 10px; border-radius: 6px; border: 1px solid #ccc; resize: vertical; box-sizing: border-box; }
+.content-container button { background: #2e7d32; color: #fff; border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+.content-container button:hover { background: #1b5e20; }
