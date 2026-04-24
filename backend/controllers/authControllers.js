@@ -64,12 +64,12 @@ const register = async (req, res) => {
     if (role === 'student') {
       await conn.query(
         'INSERT INTO Student (user_id, first_name, middle_name, last_name, gender, address, year_level, dept_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-        [user_id, first_name, middle_name || null, last_name, gender || null, address || null, year_level || null, dept_id || null]
+        [user_id, first_name, middle_name || null, last_name, gender || null, address || null, year_level ? parseInt(year_level) : null, dept_id ? parseInt(dept_id) : null]
       );
     } else {
       await conn.query(
         'INSERT INTO Instructor (user_id, first_name, middle_name, last_name, age, birth_date, gender, address, contact_no, specialization, hire_date, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-        [user_id, first_name, middle_name || null, last_name, age || null, birth_date || null, gender || null, address || null, contact_no || null, specialization || null, hire_date || null, 'active']
+        [user_id, first_name, middle_name || null, last_name, age ? parseInt(age) : null, birth_date || null, gender || null, address || null, contact_no || null, specialization || null, hire_date || null, 'active']
       );
     }
 
